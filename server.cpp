@@ -72,11 +72,18 @@ public:
 
 
 	void onClientSession(socket_ptr sock)
-	{
+	{		
 		uint8_t data[1024];
 		data[0] = 0;
 		boost::system::error_code err;
-		size_t len = sock->read_some(buffer(data, 1024), err);
+		size_t len;
+		uint16_t size; 
+		uint1024_t myNum;
+
+		len = sock->read_some(buffer(&size,sizeof(size)), err);
+		std::cout << "Size of vector: " << size << std::endl;
+		len = sock->read_some(buffer(&myNum, sizeof(myNum)), err);
+		std::cout << "Val : " << myNum << std::endl;
 		if (len > 0)
 		{
 			std::cout << data;
