@@ -12,7 +12,10 @@ namespace alert
 	{
 		using namespace std;
 		using namespace boost::multiprecision;
-		
+		/**
+        * Todas las ops
+        */
+        
 		class Operations
 		{
 			void Sort(vector<uint1024_t>& nums);
