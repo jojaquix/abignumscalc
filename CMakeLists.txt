@@ -19,17 +19,23 @@ if(Boost_FOUND)
 		message("Setting manualy boost library dir")  
 		set(Boost_LIBRARY_DIRS "${Boost_INCLUDE_DIRS}/x86/lib")
 	else()
-		message("boost library dir not empty: " ${Boost_LIBRARY_DIRS})  
+		message("boost library dir not empty" ${Boost_LIBRARY_DIRS})  
   endif()  
   message("Boost lib dir :" ${Boost_LIBRARY_DIRS})  
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions("-std=c++11")
+        add_definitions(-DBOOST_TEST_DYN_LINK) 
+	add_definitions("-std=c++11")
+	set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lboost_system -lboost_thread -lboost_unit_test_framework" )    
 endif()
 
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
+
+
+
+
 
 #client
 set(CLIENT_HDR client.h)
