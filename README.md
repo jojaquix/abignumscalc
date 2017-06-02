@@ -28,6 +28,8 @@ test -> unit test
 run the server, listening in 80 and 8080
 in other shell run bncl at moment it uses just one port (8080), to change edit in source code and do make again.
 
+bncl port 80|8080
+
 
 
 
