@@ -15,13 +15,17 @@ find_package(Boost
 
 if(Boost_FOUND)
   message("Boost include dir :" ${Boost_INCLUDE_DIRS})  
-  if(NOT DEFINED Boost_LIBRARY_DIRSN)
+  if(NOT DEFINED Boost_LIBRARY_DIRS)
 		message("Setting manualy boost library dir")  
 		set(Boost_LIBRARY_DIRS "${Boost_INCLUDE_DIRS}/x86/lib")
 	else()
-		message("boost library dir not empty" ${Boost_LIBRARY_DIRS})  
+		message("boost library dir not empty: " ${Boost_LIBRARY_DIRS})  
   endif()  
   message("Boost lib dir :" ${Boost_LIBRARY_DIRS})  
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions("-std=c++11")
 endif()
 
 include_directories(${Boost_INCLUDE_DIRS})
@@ -44,7 +48,6 @@ target_link_libraries(bnsrv ${Boost_LIBRARIES})
 
 add_executable(tests ${SERVER_HDR} ${SERVER_SRC} tests.cpp)
 add_test(big_nums_ops tests )
-
 
 
 
