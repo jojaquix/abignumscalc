@@ -18,8 +18,20 @@ namespace alert
         
 		class Operations
 		{
-			void Sort(vector<uint1024_t>& nums);
-			uint1024_t Sum(vector<uint1024_t>& nums);
+		public:
+			/**
+			* return based in auto move semantics
+			*/
+			static vector<uint1024_t> sort(vector<uint1024_t>& nums);
+			static uint1024_t sum(vector<uint1024_t>& nums);
+		private:
+
+			/**
+			* quick sort implementation using indexes.
+			*/
+			static void qsort(vector<uint1024_t>& nums, vector<int>&idx, int p, int q);
+			static int partition(vector<uint1024_t>& nums, vector<int>& idx, int p, int q);
+
 		};
 
 	}
