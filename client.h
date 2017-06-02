@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <string>
+#include <vector>
 #include <boost/asio.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 
@@ -32,7 +33,7 @@ namespace alert
 			/**
 			* exposed remote operations
 			*/
-			void sort_and_sum();
+			void sort_and_sum(std::vector<uint1024_t>& nums);
 
 		};
 	}

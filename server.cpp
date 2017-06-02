@@ -61,8 +61,7 @@ void Server::on_accept(socket_ptr sock, const boost::system::error_code & err)
 
 void Server::onClientSession(socket_ptr sock)
 {
-	uint8_t data[1024];
-	data[0] = 0;
+	std::vector<uint1024_t> nums;
 	boost::system::error_code err;
 	size_t len;
 	uint16_t size;
@@ -70,13 +69,14 @@ void Server::onClientSession(socket_ptr sock)
 
 	len = sock->read_some(buffer(&size, sizeof(size)), err);
 	std::cout << "Size of vector: " << size << std::endl;
-	len = sock->read_some(buffer(&myNum, sizeof(myNum)), err);
-	std::cout << "Val : " << myNum << std::endl;
-	if (len > 0)
+	
+	for (int i = 0; i < size; ++i)
 	{
-		std::cout << data;
-		write(*sock, buffer("ok", 2));
-	}
+		len = sock->read_some(buffer(&myNum, sizeof(myNum)), err);
+		std::cout << "Val : " << myNum << std::endl;
+		nums.push_back(myNum);
+	}	
+	
 }
 
 

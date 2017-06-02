@@ -18,8 +18,8 @@ vector<uint1024_t> Operations::sort(vector<uint1024_t>& nums)
 	//se copian los valores en el orden adecuado;
 	vector<uint1024_t> res;
 
-	for(auto& i :idx)
-	{	
+	for (auto& i : idx)
+	{
 		res.push_back(nums[i]);
 	}
 
@@ -29,48 +29,56 @@ vector<uint1024_t> Operations::sort(vector<uint1024_t>& nums)
 
 uint1024_t Operations::sum(vector<uint1024_t>& nums)
 {
-	return uint1024_t{};
+	uint1024_t acum = 0;
+	std::for_each(std::begin(nums), std::end(nums),
+		[&](uint1024_t n)
+	{
+		acum += n;
+	}
+	);
+
+	return acum;
 }
 
 void  Operations::qsort(vector<uint1024_t>& nums, vector<int>& idx, int p, int q)
-{	
+{
 	int r;
-	if (p < q )
-	{		
+	if (p < q)
+	{
 		r = partition(nums, idx, p, q);
-		qsort(nums, idx, p, r - 1 );
-		qsort(nums, idx, r + 1 , q);
+		qsort(nums, idx, p, r - 1);
+		qsort(nums, idx, r + 1, q);
 	}
 }
 
 int  Operations::partition(vector<uint1024_t>& nums, vector<int>& idx, int p, int q)
 {
 	int left;
-	int right;	
+	int right;
 
 	auto pivot = nums[idx[p]];
 	left = p;
 	right = q;
-	
-	while (left < right) 
+
+	while (left < right)
 	{
-		while (nums[idx[right]] > pivot) 
+		while (nums[idx[right]] > pivot)
 		{
 			right--;
 		}
-		while ( (left < right) && ((nums[idx[left]] <= pivot ))) 
+		while ((left < right) && ((nums[idx[left]] <= pivot)))
 		{
 			left++;
 		}
-		
-		if (left < right) 
+
+		if (left < right)
 		{
-			swap(idx[left], idx[right]);		
+			swap(idx[left], idx[right]);
 		}
 	}
-	
+
 	swap(idx[p], idx[right]);
 
-	return right;	
+	return right;
 }
 
