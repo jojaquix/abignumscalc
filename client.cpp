@@ -12,7 +12,7 @@ ep(ip::address::from_string(ip), port), sock(ioService)
 	sock.connect(ep);
 }
 
-void Client::sort_and_sum(std::vector<uint1024_t>& nums)
+std::vector<uint1024_t> Client::sort_and_sum(std::vector<uint1024_t>& nums)
 {
 	//Envia un valor 
 	uint16_t size = nums.size();
@@ -26,10 +26,11 @@ void Client::sort_and_sum(std::vector<uint1024_t>& nums)
 	uint1024_t myNum;
 	for (int i = 0; i < size +1 ; ++i)
 	{		
-		sock.read_some(buffer(&myNum, sizeof(myNum)));
-		std::cout << "Val : " << myNum << std::endl;
+		sock.read_some(buffer(&myNum, sizeof(myNum)));		
 		resp.push_back(myNum);
 	}
+
+	return resp;
 	
 }
 

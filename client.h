@@ -33,7 +33,7 @@ namespace alert
 			/**
 			* exposed remote operations
 			*/
-			void sort_and_sum(std::vector<uint1024_t>& nums);
+			std::vector<uint1024_t> sort_and_sum(std::vector<uint1024_t>& nums);
 
 		};
 	}

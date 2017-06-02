@@ -20,9 +20,23 @@ int main()
 		uint1024_t("3163244165465115465465416274321340")
 	};
 
+	int port = 8080;
 	io_service io;
-	Client client(io,"127.0.0.1", 8080);
-	client.sort_and_sum(nums);
+	Client client(io,"127.0.0.1", port);
+	std::cout << "Client conected to port: " << port << std::endl;
+	auto resp  = client.sort_and_sum(nums);
+	/**
+	* response is array of nums.size + 1 
+	* firs element is sum
+	* other elements vector sorted
+	*/
+	
+	std::cout << "Response vector size: " << resp.size() << std::endl;
+	for (auto& r : resp)
+	{
+		std::cout << r << std::endl;
+	}
+
 		
 	return 0;
 }
