@@ -21,6 +21,16 @@ void Client::sort_and_sum(std::vector<uint1024_t>& nums)
 	{
 		write(sock, buffer(&nums.at(i), sizeof(uint1024_t)));
 	}
+
+	std::vector<uint1024_t> resp;
+	uint1024_t myNum;
+	for (int i = 0; i < size +1 ; ++i)
+	{		
+		sock.read_some(buffer(&myNum, sizeof(myNum)));
+		std::cout << "Val : " << myNum << std::endl;
+		resp.push_back(myNum);
+	}
+	
 }
 
 

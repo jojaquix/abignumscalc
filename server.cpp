@@ -75,7 +75,19 @@ void Server::onClientSession(socket_ptr sock)
 		len = sock->read_some(buffer(&myNum, sizeof(myNum)), err);
 		std::cout << "Val : " << myNum << std::endl;
 		nums.push_back(myNum);
-	}	
+	}
+
+	auto sorted = Operations::sort(nums);
+	auto sum = Operations::sum(nums);
+	write(*sock, buffer(&sum, sizeof(sum)), err);
+
+	for (int i = 0; i < size; ++i)
+	{
+		write(*sock, buffer(&sorted.at(i), sizeof(uint1024_t)), err);
+	}
+
+
+
 	
 }
 
