@@ -27,29 +27,23 @@ endif()
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#set(SRC main.cpp)
-#add_executable(main ${SRC})
-
 #client
-set(CLIENT_HDR serializer.h)
-set(CLIENT_SRC serializer.cpp client.cpp)
+set(CLIENT_HDR client.h)
+set(CLIENT_SRC client.cpp)
 
-add_executable(bncl ${CLIENT_HDR} ${CLIENT_SRC})
+add_executable(bncl ${CLIENT_HDR} ${CLIENT_SRC} client_main.cpp)
 target_link_libraries(bncl ${Boost_LIBRARIES})
 
 
-
-
-
 #server
-set(SERVER_HDR calculator.h serializer.h)
-set(SERVER_SRC calculator.cpp serializer.cpp)
+set(SERVER_HDR calculator.h server.h)
+set(SERVER_SRC calculator.cpp server.cpp)
 
-add_executable(bnsrv ${SERVER_HDR} ${SERVER_SRC} server.cpp)
+add_executable(bnsrv ${SERVER_HDR} ${SERVER_SRC}  server_main.cpp)
 target_link_libraries(bnsrv ${Boost_LIBRARIES})
 
-add_executable(bnsrvtest ${SERVER_HDR} ${SERVER_SRC} servertest.cpp)
-add_test(bnsrvtest_basic bnsrvtest)
+add_executable(tests ${SERVER_HDR} ${SERVER_SRC} tests.cpp)
+add_test(big_nums_ops tests )
 
 
 

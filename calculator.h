@@ -13,7 +13,7 @@ namespace alert
 		using namespace std;
 		using namespace boost::multiprecision;
 		/**
-        * Todas las ops
+        * Operaciones habilitadas sobre números grandes.
         */
         
 		class Operations
