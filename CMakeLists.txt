@@ -55,6 +55,8 @@ target_link_libraries(bnsrv ${Boost_LIBRARIES})
 add_executable(tests ${SERVER_HDR} ${SERVER_SRC} tests.cpp)
 add_test(big_nums_ops tests )
 
+configure_file(data_nums.txt data_nums.txt COPYONLY)
+
 
 
 
